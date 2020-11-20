@@ -1,0 +1,19 @@
+{
+  "name": "owbs",
+  "version": "0.1.0",
+  "description": "One-way binding storage for the browser: quickload localstorage data",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "dependencies": {
+    "terser": "^5.5.0",
+    "uglify": "^0.1.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Niels Abildgaard <niels@deranged.dk>",
+  "license": "ISC"
+}
