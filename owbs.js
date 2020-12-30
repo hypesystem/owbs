@@ -8,7 +8,12 @@ window.owbs = (() => {
             __listeners[prop] = [];
         }
         __listeners[prop].push(listener);
-        listener(get(prop));
+
+        //If current value is truthy, run binding immediately
+        const currentValue = get(prop);
+        if(currentValue) {
+            listener(currentValue);
+        }
     };
 
     return {
