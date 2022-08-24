@@ -8,7 +8,7 @@ const argv = require("yargs").argv;
 
 (async function() {
     const code = await owbslib.generate();
-    const outputPath = path.join(__dirname, argv.output || "dist/owbs.min.js");
+    const outputPath = argv.output || "dist/owbs.min.js";
     const outputFolder = path.dirname(outputPath);
     await mkdirp(outputFolder);
     fs.writeFileSync(outputPath, code);
