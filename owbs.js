@@ -19,7 +19,7 @@ window.owbs = (() => {
 
         //If current value is truthy, run binding immediately
         const currentValue = get(prop);
-        if(currentValue) {
+        if(currentValue !== null) {
             listener(currentValue);
         }
     };
