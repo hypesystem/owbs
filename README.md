@@ -99,6 +99,8 @@ owbs.bind("username", "[data-header-profile-link]", (username) => `Welcome back,
 
 In the above example, the header profile link would the contain the text `"Welcome back, Karl"`.
 
+If you want default behavior for the `mapper` field you can pass in an identity function (`(v) => v`) or the value `null`.
+
 The `setter` argument allows you to define what field is on the target element, and it supports the following values:
 
 - `"text"` (default): set the `innerText` field
