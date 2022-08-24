@@ -85,7 +85,7 @@ Once a value is set, this is the value you will get when you get `owbs.val[field
 
 ** TODO: Right now only top-level values are watched for changes; should add support in future **
 
-### `bind(field, target[, mapper])`
+### `bind(field, target[, mapper[, setter]])`
 
 This call registers a binding from some `field` in owbs to some DOM element described by a CSS selector passed into `target`. You can optionally pass the value through a `mapper` before setting it.
 
@@ -98,6 +98,13 @@ owbs.bind("username", "[data-header-profile-link]", (username) => `Welcome back,
 ```
 
 In the above example, the header profile link would the contain the text `"Welcome back, Karl"`.
+
+The `setter` argument allows you to define what field is on the target element, and it supports the following values:
+
+- `"text"` (default): set the `innerText` field
+- `"html"`: set the `innerHTML` field
+- `"attr:<attribute>"`: sets the attribute `<attribute>` to the value returned by the mapper. For example, `attr:data-hello` will set the `data-hello` attribute to the relevant value.
+- A function `(element, value) => void`:  A custom setter that gets a target `element` and the relevant `value` to set. For example, `(element, value) => element.classList.add(value)` will add the value to the element's classList as a CSS class.
 
 ### register `on(field, listener)` change listener
 
