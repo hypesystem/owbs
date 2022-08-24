@@ -47,9 +47,13 @@ window.owbs = (() => {
             }
 
             mapper = mapper || ((x) => x);
-            const element = document.querySelector(target);
-            if(element) {
-                on(prop, (value) => setter(element, mapper(value)));
+
+            // Make NodeList of matching elements into an Array
+            const elements = [].slice.call(document.querySelectorAll(target));
+
+            // If there are any matches, register a listener that updates all of them.
+            if(elements.length) {
+                on(prop, (value) => elements.forEach((element) => setter(element, mapper(value))));
             }
         }
     };

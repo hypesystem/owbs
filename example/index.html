@@ -54,15 +54,15 @@
                         return "";
                     });
                 </script>
-                <a href="/profile" data-header-profile-link>Profile</a>
-                <script>
-                    owbs.bind("username", "[data-header-profile-link]");
-                    owbs.bind("userId", "[data-header-profile-link]", null, "attr:data-user-id");
-                </script>
+                <a href="/profile" data-username>Profile</a>
             </nav>
         </header>
         <main>
-            <h1>See this would be content</h1>
+            <h1>See this would be content, <span data-username>User</span></h1>
+            <script>
+                owbs.bind("username", "[data-username]");
+                owbs.bind("userId", "[data-header-profile-link]", null, "attr:data-user-id");
+            </script>
             <p>
                 Lorem ipsum and so on&hellip;
             </p>
