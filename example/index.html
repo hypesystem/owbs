@@ -55,7 +55,10 @@
                     });
                 </script>
                 <a href="/profile" data-header-profile-link>Profile</a>
-                <script>owbs.bind("username", "[data-header-profile-link]");</script>
+                <script>
+                    owbs.bind("username", "[data-header-profile-link]");
+                    owbs.bind("userId", "[data-header-profile-link]", null, "attr:data-user-id");
+                </script>
             </nav>
         </header>
         <main>
@@ -87,6 +90,7 @@
                 ][Math.floor(Math.random() * 7)];
 
                 owbs.val.username = name;
+                owbs.val.userId = Math.round(Math.random() * 1000);
 
                 const cartItems = owbs.val.cartItems || [];
                 cartItems.push({
