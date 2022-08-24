@@ -111,7 +111,21 @@ owbs.on("username", (value) => { /* idk, something, I guess? */ });
 
 **TODO: es5 (bigger) and modern web both available!**
 
-Here's the hard part: you want to somehow be able to place the owbs code directly in your generated HTML-files. In order to make it as versatile as possible, the library you can get on npm (`npm i owbs`) exposes a single method, `generate`, which gives you some nice and minified code.
+### Easy start
+
+The easiest way to test out the library is to include the distributable found at unpkg by inserting the following code in your HTML page:
+
+```html
+<script src="https://unpkg.com/owbs/dist/owbs.min.js"></script>
+```
+
+This hooks up the global variable owbs to be used as described above.
+
+### Tighter integration
+
+Using unpkg as a CDN for the file means downloading that code from a different server---and that is going to slow down execution of your page. You can't defer loading because the whole point of owbs is quickly rendering before other requests are required.
+
+You want to somehow be able to place the owbs code directly in your generated HTML-files. In order to make it as versatile as possible, the library you can get on npm (`npm i owbs`) exposes a single method, `generate`, which gives you some nice and minified code.
 
 This code somehow needs to find its way into your built HTML files, which varies a lot depending on which build system you are using.
 
