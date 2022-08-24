@@ -63,6 +63,15 @@
             <p>
                 Lorem ipsum and so on&hellip;
             </p>
+            <h2>Shopping cart items</h2>
+            <ul data-cart-items-list></ul>
+            <script>
+                owbs.bind("cartItems", "[data-cart-items-list]", (cartItems) => {
+                    return cartItems.map((item) => `
+                        <li>${item.name} x${item.count}</li>
+                    `).join("");
+                }, "html");
+            </script>
         </main>
 
         <script>

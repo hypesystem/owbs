@@ -34,11 +34,18 @@ window.owbs = (() => {
             }
         }),
         on,
-        bind: (prop, target, mapper) => {
+        bind: (prop, target, mapper, setter) => {
+            if(setter === "html") {
+                setter = (element, value) => element.innerHTML = value;
+            }
+            if(!setter || setter === "text") {
+                setter = (element, value) => element.innerText = value;
+            }
+
             mapper = mapper || ((x) => x);
             const element = document.querySelector(target);
             if(element) {
-                on(prop, (value) => element.innerText = mapper(value));
+                on(prop, (value) => setter(element, mapper(value)));
             }
         }
     };
