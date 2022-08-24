@@ -10,10 +10,14 @@
     "terser": "^5.5.0",
     "uglify": "^0.1.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mkdirp": "^1.0.4",
+    "yargs": "^17.5.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "example": "node prep-example.js && npx http-server example -a localhost -o"
+    "example": "node build.js --output example/owbs.min.js && npx http-server example -a localhost -o",
+    "prepublish": "node build.js"
   },
   "author": "Niels Abildgaard <niels@deranged.dk>",
   "license": "ISC"
