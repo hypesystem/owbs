@@ -1,8 +1,9 @@
 window.owbs = (() => {
     const __listeners = {};
+    const localStorage = window.localStorage;
 
     const get = (prop) => {
-        const value = window.localStorage.getItem(`owbs__${prop}`);
+        const value = localStorage.getItem(`owbs__${prop}`);
         try {
             return JSON.parse(value);
         }
@@ -28,7 +29,7 @@ window.owbs = (() => {
         val: new Proxy({}, {
             get: (_, prop) => get(prop),
             set: (_, prop, value) => {
-                window.localStorage.setItem(`owbs__${prop}`, JSON.stringify(value));
+                localStorage.setItem(`owbs__${prop}`, JSON.stringify(value));
                 const listeners = __listeners[prop] || [];
                 listeners.forEach((listener) => listener(value));
             }
