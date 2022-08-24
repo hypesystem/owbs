@@ -41,6 +41,19 @@
             <nav>
                 <a href="#">Home</a>
                 <div class="spacer"></div>
+                <a href="#cart">Shopping cart <span data-cart-count></span></a>
+                <script>
+                    owbs.bind("cartItems", "[data-cart-count]", (cartItems) => {
+                        const count = cartItems
+                            .map((item) => item.count)
+                            .reduce((a, b) => a + b, 0);
+
+                        if(count > 0) {
+                            return `(${count})`;
+                        }
+                        return "";
+                    });
+                </script>
                 <a href="/profile" data-header-profile-link>Profile</a>
                 <script>owbs.bind("username", "[data-header-profile-link]");</script>
             </nav>
@@ -65,6 +78,13 @@
                 ][Math.floor(Math.random() * 7)];
 
                 owbs.val.username = name;
+
+                const cartItems = owbs.val.cartItems || [];
+                cartItems.push({
+                    name: `An item for ${name}`,
+                    count: Math.round(Math.random() * 10),
+                });
+                owbs.val.cartItems = cartItems;
             }, 10000);
         </script>
     </body>
