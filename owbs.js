@@ -3,13 +3,12 @@ window.owbs = (() => {
     const localStorage = window.localStorage;
 
     const get = (prop) => {
-        const value = localStorage.getItem(`owbs__${prop}`);
+        let value = localStorage.getItem(`owbs__${prop}`);
         try {
-            return JSON.parse(value);
+            value = JSON.parse(value);
         }
-        catch(error) {
-            return value;
-        }
+        catch(error) {}
+        return value;
     }
 
     const on = (prop, listener) => {
