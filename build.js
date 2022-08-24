@@ -1,3 +1,5 @@
+#!node
+
 const owbslib = require("./index");
 const fs = require("fs");
 const path = require("path");

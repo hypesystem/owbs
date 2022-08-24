@@ -6,6 +6,9 @@
   "directories": {
     "dist": "dist"
   },
+  "bin": {
+    "owbs-build": "build.js"
+  },
   "dependencies": {
     "terser": "^5.5.0",
     "uglify": "^0.1.5"
