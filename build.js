@@ -1,4 +1,4 @@
-#!node
+#!/usr/bin/env node
 
 const owbslib = require("./index");
 const fs = require("fs");
