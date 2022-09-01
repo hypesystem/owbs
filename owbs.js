@@ -31,6 +31,7 @@ window.owbs = (() => {
                 localStorage.setItem(`owbs__${prop}`, JSON.stringify(value));
                 const listeners = __listeners[prop] || [];
                 listeners.forEach((listener) => listener(value));
+                return true;
             }
         }),
         on,
