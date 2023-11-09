@@ -36,7 +36,7 @@ window.owbs = (() => {
         }),
         on,
         bind: (prop, target, mapper, setter) => {
-            if(setter && setter.startsWith("attr:")) {
+            if(setter && typeof setter === "string" && setter.startsWith("attr:")) {
                 const attr = setter.slice(5);
                 setter = (element, value) => element.setAttribute(attr, value);
             }
