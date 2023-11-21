@@ -21,6 +21,13 @@ window.owbs = (() => {
         listener(get(prop));
     };
 
+    const HTML = "html";
+    const TEXT = "text";
+
+    const setHtml = (element, value) => element.innerHTML = value;
+    const setText = (element, value) => element.innerText = value;
+    const setAttr = (attr) => (element, value) => element.setAttribute(attr, value);
+
     return {
         val: new Proxy({}, {
             get: (_, prop) => get(prop),
@@ -35,13 +42,21 @@ window.owbs = (() => {
         bind: (prop, target, mapper, setter) => {
             if(setter && typeof setter === "string" && setter.startsWith("attr:")) {
                 const attr = setter.slice(5);
-                setter = (element, value) => element.setAttribute(attr, value);
+                setter = setAttr(attr);
             }
-            if(setter === "html") {
-                setter = (element, value) => element.innerHTML = value;
+            if(setter === HTML) {
+                setter = setHtml;
             }
-            if(!setter || setter === "text") {
-                setter = (element, value) => element.innerText = value;
+            if(setter === "attrs") {
+                setter = (element, valueMap) => Object.entries(valueMap)
+                    .forEach(([ attr, value ]) => {
+                        if(attr === HTML) setHtml(element, value);
+                        else if(attr === TEXT) setText(element, value);
+                        else setAttr(attr)(element, value);
+                    });
+            }
+            if(!setter || setter === TEXT) {
+                setter = setText;
             }
 
             mapper = mapper || ((x) => x);
