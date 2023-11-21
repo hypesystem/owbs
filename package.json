@@ -1,6 +1,6 @@
 {
   "name": "owbs",
-  "version": "0.2.10",
+  "version": "0.3.0",
   "description": "One-way binding storage for the browser: quickload localstorage data",
   "main": "index.js",
   "directories": {
