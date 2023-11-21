@@ -66,10 +66,36 @@
             <p>
                 Lorem ipsum and so on&hellip;
             </p>
-            <h2>Shopping cart items</h2>
+            <h2>
+                <img src="/cart-outline.svg" alt="Empty cart" width="24" data-cart-icon>
+                Shopping cart items
+                <a data-clear-cart href="#">Clear</a>
+            </h2>
+            <script>
+                owbs.bind("cartItems", "[data-cart-icon]", (cartItems) => {
+                    if(cartItems?.length) {
+                        return {
+                            src: "/cart.svg",
+                            alt: "Full cart",
+                        };
+                    }
+                    return {
+                        src: "/cart-outline.svg",
+                        alt: "Empty cart",
+                    };
+                }, "attrs");
+
+                document.querySelector("[data-clear-cart]").addEventListener("click", (e) => {
+                    e.preventDefault();
+                    owbs.val.cartItems = [];
+                })
+            </script>
             <ul data-cart-items-list></ul>
             <script>
                 owbs.bind("cartItems", "[data-cart-items-list]", (cartItems) => {
+                    if(!cartItems) {
+                        return "";
+                    }
                     return cartItems.map((item) => `
                         <li>${item.name} x${item.count}</li>
                     `).join("");
